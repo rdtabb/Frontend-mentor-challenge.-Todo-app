@@ -1,0 +1,199 @@
+/* ----------------------------- */
+/* Imported reset                */
+/* ----------------------------- */
+
+@import url(./reset.css);
+
+/* ----------------------------- */
+/* Custom properties             */
+/* ----------------------------- */
+:root {
+    --clr-primary-400: hsl(220, 98%, 61%);
+    --clr-primary-checked: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
+
+    --dt-clr-100: hsl(234, 39%, 85%);
+    --dt-clr-400: hsl(235, 21%, 11%);
+    --dt-clr-500: hsl(235, 24%, 19%);
+    --dt-clr-600: hsl(234, 11%, 52%);
+    --dt-clr-700: hsl(233, 14%, 35%);
+    --dt-clr-800: hsl(237, 14%, 26%);
+
+    --ff-primary: 'Josefin Sans', sans-serif;
+
+    --fs-400: 1.125rem;
+    --fs-500: 1.5rem;
+    --fs-600: 2rem;
+    --fs-700: 2.25rem;
+    --fs-800: 2.5rem;
+    --fs-900: 3rem;
+}
+
+@media (max-width: 35em) {
+    :root {
+        --fs-400: 1rem;
+        --fs-900: 2.25rem;
+    }
+}
+
+/* ----------------------------- */
+/* Utility classes               */
+/* ----------------------------- */
+
+.container {
+    --max-width: 50rem;
+    --padding: 1rem;
+
+    width: min(var(--max-width), 100% - (var(--padding) * 2));
+    margin-inline: auto;
+    margin-top: 3.5rem;
+}
+
+/* ----------------------------- */
+/* Styling                       */
+/* ----------------------------- */
+
+/* ........................... */
+/* 1 - body                    */
+body {
+    display: grid;
+    place-items: start;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--dt-clr-400) url(../images/bg-desktop-dark.jpg) no-repeat top left;
+    font-family: var(--ff-primary);
+    color: var(--dt-clr-100);
+    font-size: var(--fs-400);
+}
+
+@media (max-width: 40em) {
+    body {
+        background: var(--dt-clr-400) url(../images/bg-mobile-dark.jpg) no-repeat top left;
+        background-size: 100%;
+    }
+}
+
+/* ........................... */
+/* 2 - primary-header          */
+
+.primary-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.primary-header {
+    font-size: var(--fs-900);
+    font-weight: 700;
+    letter-spacing: .5rem;
+}
+
+.primary-header__button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* ........................... */
+/* 3 - add task                */
+
+.add-task-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    background-color: var(--dt-clr-500);
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 1.7rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--dt-clr-800);
+    margin: 1rem;
+    transition: all 200ms ease-in;
+}
+
+
+input:checked {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+input[type="checkbox"]:hover {
+    border: 1px solid hsl(280, 87%, 65%);
+    cursor: pointer;
+}
+
+input[type="text"] {
+    border: none;
+    background: transparent;
+    color: var(--dt-clr-100);
+}
+
+/* ........................... */
+/* 4 - todo list               */
+
+.todo-list-container {
+    background-color: var(--dt-clr-500);
+    border-radius: .25rem;
+}
+
+.todo-container {
+    display: grid;
+    grid-template-columns: min-content 1fr .1fr;
+    gap: .5rem;
+    border-bottom: 1px solid var(--dt-clr-700);
+}
+
+.cross-icon {
+    place-self: center;
+    background: transparent url(../images/icon-cross.svg);
+    background-size: cover;
+    border: 0;
+    cursor: pointer;
+    opacity: 0;
+    width: 1.7rem;
+    aspect-ratio: 1;
+    padding: .3rem;
+    transition: opacity 200ms ease;
+}
+
+.todo-container:hover .cross-icon {
+    opacity: .8;
+}
+
+.cross-icon:hover {
+    opacity: 1;
+}
+
+/* ........................... */
+/* 5 - text at the bottom      */
+
+.todo-container--text {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.todo-container--text ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.todo-container--text ul li {
+    transition: opacity 200ms ease;
+    cursor: pointer;
+}
+
+.todo-container--text ul li:hover {
+    opacity: 1;
+}
+
+.todo-container--text button {
+    background: transparent;
+    border: none;
+    color: var(--dt-clr-100);
+    cursor: pointer;
+}
