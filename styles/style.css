@@ -125,9 +125,31 @@ input[type="checkbox"]:hover {
 }
 
 input[type="text"] {
+    position: relative;
     border: none;
     background: transparent;
     color: var(--dt-clr-100);
+}
+
+#input-task {
+    position: relative;
+    color: var(--dt-clr-100);
+}
+
+#input-task::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 3px;
+    color: hsl(234, 39%, 85%);
+    background-color: hsl(234, 39%, 85%);
+    left: 10px;
+    bottom: 10px;
+}
+
+.line-through {
+    text-decoration: line-through;
+    opacity: .5;
 }
 
 /* ........................... */
@@ -161,6 +183,7 @@ input[type="text"] {
 }
 
 .cross-icon {
+    position: relative;
     place-self: center;
     background: transparent url(../images/icon-cross.svg);
     background-size: cover;

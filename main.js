@@ -1,7 +1,6 @@
 const submitButton = document.getElementById('add-task')
 const todoListContainer = document.getElementById('todo-list-container')
 const addTodoField = document.getElementById('input-value')
-const inputValue = addTodoField.value
 
 submitButton.addEventListener('click', () => {
     const todoContainer = document.createElement('div')
@@ -12,6 +11,7 @@ submitButton.addEventListener('click', () => {
     todoComplete.setAttribute('type', 'checkbox')
     todoComplete.setAttribute('name', 'check')
     todoComplete.setAttribute('id', 'complete-task')
+    todoComplete.setAttribute('data-visible', 'true')
 
     const checkboxImage = document.createElement('img')
     checkboxImage.classList.add('checkbox__image')
@@ -21,7 +21,7 @@ submitButton.addEventListener('click', () => {
     const todoText = document.createElement('input')
     todoText.setAttribute('id', 'input-task')
     todoText.setAttribute('type', 'text')
-    todoText.innerText = inputValue //why doesn't it work??? will solve later
+    todoText.setAttribute('value', `${addTodoField.value}`)
 
     const deleteButton = document.createElement('button')
     deleteButton.classList.add('cross-icon')
@@ -30,4 +30,17 @@ submitButton.addEventListener('click', () => {
     todoContainer.appendChild(checkboxImage)
     todoContainer.appendChild(todoText)
     todoContainer.appendChild(deleteButton)
+
+    todoComplete.addEventListener('click', () => {
+        const visibility = todoComplete.getAttribute('data-visible')
+        if (visibility === 'true') {
+            todoText.classList.add('line-through')
+            todoComplete.setAttribute('data-visible', 'false')
+            console.log('false')
+        } else {
+            todoText.classList.remove('line-through')
+            todoComplete.setAttribute('data-visible', 'true')
+            console.log('true')
+        }
+    })
 })
