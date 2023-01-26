@@ -43,4 +43,8 @@ submitButton.addEventListener('click', () => {
             console.log('true')
         }
     })
+
+    deleteButton.addEventListener('click', () => {
+        todoListContainer.removeChild(todoContainer)
+    })
 })
