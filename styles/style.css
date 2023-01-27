@@ -252,3 +252,7 @@ li[data-active="true"] {
     opacity: 1 !important;
     color: var(--clr-primary-400);
 }
+
+.removed {
+    display: none;
+}
