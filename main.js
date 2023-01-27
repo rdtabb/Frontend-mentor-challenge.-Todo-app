@@ -52,8 +52,9 @@ submitButton.addEventListener('click', () => {
     //-----------------------------------------------
     deleteCompletedButton.addEventListener('click', () => {
         const completedTasks = todoContainer.querySelector('.line-through')
+        const mainContainer = todoContainer.parentNode;
         if (todoContainer.contains(completedTasks)) {
-            todoContainer.classList.add('removed')
+            mainContainer.removeChild(todoContainer)
         }
     })
 })
