@@ -136,20 +136,26 @@ input[type="text"] {
     color: var(--dt-clr-100);
 }
 
-#input-task::before {
-    content: '';
-    position: absolute;
-    width: 70%;
-    height: 3px;
-    color: hsl(234, 39%, 85%);
-    background-color: hsl(234, 39%, 85%);
-    left: 10px;
-    bottom: 10px;
-}
-
 .line-through {
     text-decoration: line-through;
     opacity: .5;
+}
+
+.add-task-checkbox {
+    background: none;
+    box-sizing: border-box;
+    padding: .1rem;
+    transition: all 200ms ease;
+}
+
+.add-task-checkbox:hover {
+    border: 1px solid var(--clr-primary-400) !important;
+    background: transparent url(../images/plus.svg) no-repeat center;
+    background-size: cover;
+}
+
+.add-task-checkbox:checked {
+    background: transparent;
 }
 
 /* ........................... */

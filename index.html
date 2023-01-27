@@ -20,7 +20,7 @@
       </button>
     </div>
     <div class="add-task-container">
-      <input type="checkbox" name="check" id="add-task"></input>
+      <input type="checkbox" class="add-task-checkbox" name="check" id="add-task"></input>
       <input type="text" placeholder="Add your task here" id="input-value"></input>
     </div>
     <div class="todo-list-container" id="todo-list-container">
@@ -32,11 +32,11 @@
       </div> -->
     </div>
     <div class="todo-container todo-container--text">
-      <p>items left</p>
+      <p><span id="counter">0</span> items left</p>
       <ul>
-        <li data-active="true">All</li>
-        <li data-active="false">Active</li>
-        <li data-active="false">Completed</li>
+        <li id="show-all-b" data-active="true">All</li>
+        <li aria-controls="todo-container-completed" id="show-active-b" data-active="false">Active</li>
+        <li aria-controls="todo-container-active" id="show-completed-b" data-active="false">Completed</li>
       </ul>
       <button aria-controls="todo-container" class="fuckoff" id="delete-completed-button">Clear completed</button>
     </div>
