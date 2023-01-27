@@ -8,6 +8,20 @@ const showActive = document.getElementById('show-active-b')
 const showCompleted = document.getElementById('show-completed-b')
 const counter = document.getElementById('counter')
 
+const body = document.querySelector('body')
+const themeToggle = document.getElementById('theme-toggle')
+
+themeToggle.addEventListener('click', () => {
+    const whatTheme = body.getAttribute('data-theme')
+    if (whatTheme === 'light') {
+        body.classList.remove('light')
+        body.setAttribute('data-theme', 'dark')
+    } else if (whatTheme === 'dark') {
+        body.classList.add('light')
+        body.setAttribute('data-theme', 'light')
+    }
+})
+
 submitButton.addEventListener('click', () => {
     const todoContainer = document.createElement('div');
     todoContainer.classList.add('todo-container');
@@ -31,6 +45,8 @@ submitButton.addEventListener('click', () => {
     todoText.setAttribute('id', 'input-task');
     todoText.setAttribute('type', 'text');
     todoText.setAttribute('value', `${addTodoField.value}`);
+
+    addTodoField.value = ''
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('cross-icon');
@@ -68,9 +84,7 @@ submitButton.addEventListener('click', () => {
         if (todoContainer.contains(completedTasks)) {
             mainContainer.removeChild(todoContainer)
             const mainContainerNumb = mainContainer.childElementCount;
-            //counter.innerText = `${mainContainerNumb}`
-            counter.innerText = `0`
-            // that is indeed the problem
+            counter.innerText = `${mainContainerNumb}`
         }
     })
 
