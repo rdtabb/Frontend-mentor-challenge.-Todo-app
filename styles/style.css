@@ -102,6 +102,7 @@ body.light {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
+    color: hsl(240, 100%, 100%);
 }
 
 .primary-header {
@@ -109,11 +110,6 @@ body.light {
     font-weight: 700;
     letter-spacing: .5rem;
 }
-
-body.light .primary-header {
-    color: var(--dt-clr-400);
-}
-
 
 .primary-header__button {
     background: transparent no-repeat center; 
