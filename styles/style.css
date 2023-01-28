@@ -42,7 +42,7 @@
 /* Utility classes               */
 /* ----------------------------- */
 
-.container {
+.main-container {
     --max-width: 50rem;
     --padding: 1rem;
 
@@ -116,11 +116,16 @@ body.light .primary-header {
 
 
 .primary-header__button {
-    background: transparent url(../images/icon-sun.svg) no-repeat center; 
+    background: transparent no-repeat center; 
+    background-image: url(../images/icon-sun.svg);
     width: 2rem;
     aspect-ratio: 1;
     border: none;
     cursor: pointer;
+}
+
+.primary-header__button--dark-theme {
+    background-image: url(../images/icon-moon.svg);
 }
 
 /* ........................... */
@@ -309,4 +314,13 @@ li[data-active="true"] {
 
 .removed {
     display: none;
+}
+
+/* ........................... */
+/* 6 - caption container       */
+
+.caption-container {
+    text-align: center;
+    margin-top: 3rem;
+    opacity: .8;
 }

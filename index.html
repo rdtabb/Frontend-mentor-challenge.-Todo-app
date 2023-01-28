@@ -12,7 +12,7 @@
 </head>
 <body data-theme="dark">
 
-  <div class="container">
+  <div class="main-container">
     <div class="primary-header-container">
       <h1 class="primary-header">TODO</h1>
       <button id="theme-toggle" class="primary-header__button"></button>
@@ -21,7 +21,7 @@
       <input type="checkbox" class="add-task-checkbox" name="check" id="add-task"></input>
       <input type="text" placeholder="Add your task here" id="input-value"></input>
     </div>
-    <div class="todo-list-container" id="todo-list-container">
+    <div class="todo-list-container container" id="todo-list-container">
       <!-- <div class="todo-container">
         <input type="checkbox" name="check" id="complete-task"></input>
         <img class="checkbox__image" id="checkbox__image" src="./images/icon-check.svg" alt="">
@@ -38,9 +38,10 @@
       </ul>
       <button aria-controls="todo-container" class="fuckoff" id="delete-completed-button">Clear completed</button>
     </div>
-    <div class="caption-container"></div>
+    <div class="caption-container">Drag and drop to sort items in the list</div>
   </div>
 
   <script src="./main.js"></script>
+
 </body>
 </html>
