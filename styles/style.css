@@ -203,7 +203,7 @@ input[type="text"] {
 .todo-list-container {
     background-color: var(--dt-clr-500);
     border-radius: .25rem;
-    transition: all var(--theme-timing) ease-in-out;
+    transition: all var(--theme-timing) var(--theme-function);
 }
 
 .todo-container {
@@ -212,7 +212,7 @@ input[type="text"] {
     gap: .5rem;
     border-bottom: 1px solid var(--dt-clr-700);
     position: relative;
-    transition: all var(--theme-timing) ease-in-out;
+    transition: all var(--theme-timing) var(--theme-function);
 }
 
 .checkbox__image {
@@ -260,7 +260,7 @@ input[type="text"] {
     padding: 1rem;
     background-color: var(--dt-clr-500);
     border-radius: .25rem;
-    transition: all var(--theme-timing) var(--theme-function);
+    color: var(--dt-clr-100);
 }
 
 .todo-container--text > *:first-child {
@@ -281,9 +281,9 @@ input[type="text"] {
 }
 
 .todo-container--text ul li {
-    transition: opacity 200ms ease;
     cursor: pointer;
     opacity: .6;
+    color: var(--dt-clr-100);
 }
 
 .todo-container--text ul li:hover {
@@ -296,7 +296,6 @@ input[type="text"] {
     color: var(--dt-clr-100);
     cursor: pointer;
     opacity: .6;
-    transition: opacity 200ms ease;
 }
 
 .todo-container--text button:hover {
