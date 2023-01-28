@@ -63,6 +63,7 @@ body {
     height: 100vh;
     overflow: hidden;
     background: var(--dt-clr-400) url(../images/bg-desktop-dark.jpg) no-repeat top left;
+    background-size: 100%;
     font-family: var(--ff-primary);
     color: var(--dt-clr-100);
     font-size: var(--fs-400);
@@ -77,6 +78,7 @@ body.light {
     --dt-clr-700: rgba(187, 177, 177, 0.516);
     --dt-clr-800: hsl(235, 8%, 69%);
     background: var(--dt-clr-400) url(../images/bg-desktop-light.jpg) no-repeat top left;
+    background-size: 100%;
     transition: all var(--theme-timing) var(--theme-function);
 }
 
