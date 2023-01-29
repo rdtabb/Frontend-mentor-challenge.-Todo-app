@@ -41,8 +41,6 @@ submitButton.addEventListener("click", () => {
   todoText.setAttribute("type", "text");
   todoText.setAttribute("value", `${addTodoField.value}`);
 
-  addTodoField.value = "";
-
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("cross-icon");
 
@@ -230,4 +228,6 @@ submitButton.addEventListener("click", () => {
       { offset: Number.NEGATIVE_INFINITY }
     ).element;
   }
+
+  addTodoField.value = "";
 });
