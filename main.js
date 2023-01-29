@@ -1,10 +1,9 @@
-let darkMode = localStorage.getItem("darkMode");
-localStorage.setItem("darkMode", "enabled");
-
+/* ----------------------------- */
+/* Elements                      */
+/* ----------------------------- */
 const submitButton = document.getElementById("add-task");
 const todoListContainer = document.getElementById("todo-list-container");
 const addTodoField = document.getElementById("input-value");
-
 const deleteCompletedButton = document.getElementById(
   "delete-completed-button"
 );
@@ -13,41 +12,9 @@ const showActive = document.getElementById("show-active-b");
 const showCompleted = document.getElementById("show-completed-b");
 const counter = document.getElementById("counter");
 
-const body = document.querySelector("body");
-const themeToggle = document.getElementById("theme-toggle");
-
-if (darkMode == "enabled") {
-  body.classList.remove("light");
-  body.setAttribute("data-theme", "dark");
-  themeToggle.classList.remove("primary-header__button--dark-theme");
-  localStorage.setItem("darkMode", "enabled");
-  console.log(darkMode);
-} else {
-  body.classList.add("light");
-  body.setAttribute("data-theme", "light");
-  themeToggle.classList.add("primary-header__button--dark-theme");
-  localStorage.setItem("darkMode", "disabled");
-  console.log(darkMode);
-}
-
-themeToggle.addEventListener("click", () => {
-  const whatTheme = body.getAttribute("data-theme");
-  darkMode = localStorage.getItem("darkMode");
-  if (darkMode == "enabled") {
-    body.classList.add("light");
-    body.setAttribute("data-theme", "light");
-    themeToggle.classList.add("primary-header__button--dark-theme");
-    localStorage.setItem("darkMode", "disabled");
-    console.log(darkMode);
-  } else if (darkMode == "disabled") {
-    body.classList.remove("light");
-    body.setAttribute("data-theme", "dark");
-    themeToggle.classList.remove("primary-header__button--dark-theme");
-    localStorage.setItem("darkMode", "enabled");
-    console.log(darkMode);
-  }
-});
-
+/* ----------------------------- */
+/* Submit button                 */
+/* ----------------------------- */
 submitButton.addEventListener("click", () => {
   const todoContainer = document.createElement("div");
   todoContainer.classList.add("todo-container");
@@ -84,29 +51,28 @@ submitButton.addEventListener("click", () => {
   todoContainer.appendChild(todoText);
   todoContainer.appendChild(deleteButton);
 
-  //-----------------------------------------------
-  todoComplete.addEventListener("click", () => {
-    const visibility = todoComplete.getAttribute("data-visible");
-    if (visibility === "true") {
-      todoText.classList.add("line-through");
-      todoComplete.setAttribute("data-visible", "false");
-      todoContainer.setAttribute("id", "todo-container-completed");
-    } else {
-      todoText.classList.remove("line-through");
-      todoComplete.setAttribute("data-visible", "true");
-      todoContainer.setAttribute("id", "todo-container-active");
-    }
-  });
+  /* ----------------------------- */
+  /* Functions                     */
+  /* ----------------------------- */
+  const setAsCompleted = () => {
+    todoText.classList.add("line-through");
+    todoComplete.setAttribute("data-visible", "false");
+    todoContainer.setAttribute("id", "todo-container-completed");
+  };
 
-  //-----------------------------------------------
-  deleteButton.addEventListener("click", () => {
+  const setAsNonCompleted = () => {
+    todoText.classList.remove("line-through");
+    todoComplete.setAttribute("data-visible", "true");
+    todoContainer.setAttribute("id", "todo-container-active");
+  };
+
+  const pressedDeleteButton = () => {
     todoListContainer.removeChild(todoContainer);
     const todoListContainerNumber = todoListContainer.childElementCount;
     counter.innerText = `${todoListContainerNumber}`;
-  });
+  };
 
-  //-----------------------------------------------
-  deleteCompletedButton.addEventListener("click", () => {
+  const pressedDeleteCompleted = () => {
     const completedTasks = todoContainer.querySelector(".line-through");
     const mainContainer = todoContainer.parentNode;
     if (todoContainer.contains(completedTasks)) {
@@ -114,12 +80,9 @@ submitButton.addEventListener("click", () => {
       const mainContainerNumb = mainContainer.childElementCount;
       counter.innerText = `${mainContainerNumb}`;
     }
-  });
+  };
 
-  counter.innerText = `${numb}`;
-
-  //-----------------------------------------------
-  showActive.addEventListener("click", () => {
+  const showActiveFilter = () => {
     const completedTodo = document.querySelectorAll(
       "#todo-container-completed"
     );
@@ -133,9 +96,9 @@ submitButton.addEventListener("click", () => {
 
     const number = activeTodo.length;
     counter.innerText = `${number}`;
-  });
+  };
 
-  showCompleted.addEventListener("click", () => {
+  const showCompletedFilter = () => {
     const completedTodo = document.querySelectorAll(
       "#todo-container-completed"
     );
@@ -149,9 +112,9 @@ submitButton.addEventListener("click", () => {
 
     const number = completedTodo.length;
     counter.innerText = `${number}`;
-  });
+  };
 
-  showAll.addEventListener("click", () => {
+  const showAllFilter = () => {
     const completedTodo = document.querySelectorAll(
       "#todo-container-completed"
     );
@@ -166,9 +129,60 @@ submitButton.addEventListener("click", () => {
     const mainContainer = todoContainer.parentNode;
     const mainContainerNumb = mainContainer.childElementCount;
     counter.innerText = `${mainContainerNumb}`;
+  };
+
+  /* ----------------------------- */
+  /* Mark todo as completed        */
+  /* ----------------------------- */
+  todoComplete.addEventListener("click", () => {
+    const visibility = todoComplete.getAttribute("data-visible");
+    if (visibility === "true") {
+      setAsCompleted();
+    } else {
+      setAsNonCompleted();
+    }
   });
 
-  //-----------------------------------------------
+  /* ----------------------------- */
+  /* Delete with cross icon        */
+  /* ----------------------------- */
+  deleteButton.addEventListener("click", () => {
+    pressedDeleteButton();
+  });
+
+  /* ----------------------------- */
+  /* Delete completed              */
+  /* ----------------------------- */
+  deleteCompletedButton.addEventListener("click", () => {
+    pressedDeleteCompleted();
+  });
+
+  counter.innerText = `${numb}`;
+
+  /* ----------------------------- */
+  /* Show active filter            */
+  /* ----------------------------- */
+  showActive.addEventListener("click", () => {
+    showActiveFilter();
+  });
+
+  /* ----------------------------- */
+  /* Show completed filter         */
+  /* ----------------------------- */
+  showCompleted.addEventListener("click", () => {
+    showCompletedFilter();
+  });
+
+  /* ----------------------------- */
+  /* Show all filter               */
+  /* ----------------------------- */
+  showAll.addEventListener("click", () => {
+    showAllFilter();
+  });
+
+  /* ----------------------------- */
+  /* Drag-n-drop                   */
+  /* ----------------------------- */
   const draggables = document.querySelectorAll(".draggable");
   const containers = document.querySelectorAll(".container");
 
