@@ -1,3 +1,6 @@
+let darkMode = localStorage.getItem("darkMode");
+localStorage.setItem("darkMode", "enabled");
+
 const submitButton = document.getElementById("add-task");
 const todoListContainer = document.getElementById("todo-list-container");
 const addTodoField = document.getElementById("input-value");
@@ -13,16 +16,35 @@ const counter = document.getElementById("counter");
 const body = document.querySelector("body");
 const themeToggle = document.getElementById("theme-toggle");
 
+if (darkMode == "enabled") {
+  body.classList.remove("light");
+  body.setAttribute("data-theme", "dark");
+  themeToggle.classList.remove("primary-header__button--dark-theme");
+  localStorage.setItem("darkMode", "enabled");
+  console.log(darkMode);
+} else {
+  body.classList.add("light");
+  body.setAttribute("data-theme", "light");
+  themeToggle.classList.add("primary-header__button--dark-theme");
+  localStorage.setItem("darkMode", "disabled");
+  console.log(darkMode);
+}
+
 themeToggle.addEventListener("click", () => {
   const whatTheme = body.getAttribute("data-theme");
-  if (whatTheme === "light") {
-    body.classList.remove("light");
-    body.setAttribute("data-theme", "dark");
-    themeToggle.classList.remove("primary-header__button--dark-theme");
-  } else if (whatTheme === "dark") {
+  darkMode = localStorage.getItem("darkMode");
+  if (darkMode == "enabled") {
     body.classList.add("light");
     body.setAttribute("data-theme", "light");
     themeToggle.classList.add("primary-header__button--dark-theme");
+    localStorage.setItem("darkMode", "disabled");
+    console.log(darkMode);
+  } else if (darkMode == "disabled") {
+    body.classList.remove("light");
+    body.setAttribute("data-theme", "dark");
+    themeToggle.classList.remove("primary-header__button--dark-theme");
+    localStorage.setItem("darkMode", "enabled");
+    console.log(darkMode);
   }
 });
 
