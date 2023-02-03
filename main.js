@@ -12,6 +12,7 @@ const showActive = document.getElementById("show-active-b");
 const showCompleted = document.getElementById("show-completed-b");
 const counter = document.getElementById("counter");
 
+let localStorageCounter = 0;
 /* ----------------------------- */
 /* Submit button                 */
 /* ----------------------------- */
@@ -48,6 +49,9 @@ submitButton.addEventListener("click", () => {
   todoContainer.appendChild(checkboxImage);
   todoContainer.appendChild(todoText);
   todoContainer.appendChild(deleteButton);
+
+  localStorage.setItem("numb", `${numb}`);
+  localStorage.setItem(`todo${numb}`, `${addTodoField.value}`);
 
   /* ----------------------------- */
   /* Functions                     */
@@ -217,6 +221,7 @@ submitButton.addEventListener("click", () => {
         const box = child.getBoundingClientRect();
         const offset = y - box.top - box.height / 2;
         if (offset < 0 && offset > closest.offset) {
+          s;
           return {
             offset: offset,
             element: child,
@@ -231,3 +236,46 @@ submitButton.addEventListener("click", () => {
 
   addTodoField.value = "";
 });
+
+const numbLocal = parseInt(localStorage.getItem("numb"));
+
+if (numbLocal != null) {
+  for (let i = 1; i <= numbLocal; i++) {
+    const innerTodoText = localStorage.getItem(`todo${i}`)
+
+    const todoContainer = document.createElement("div");
+    todoContainer.classList.add("todo-container");
+    todoContainer.classList.add("draggable");
+    todoContainer.setAttribute("id", "todo-container-active");
+    todoContainer.setAttribute("draggable", "true");
+    todoListContainer.appendChild(todoContainer);
+
+    const numb = numbLocal;
+
+    const todoComplete = document.createElement("input");
+    todoComplete.setAttribute("type", "checkbox");
+    todoComplete.setAttribute("name", "check");
+    todoComplete.setAttribute("id", "complete-task");
+    todoComplete.setAttribute("data-visible", "true");
+
+    const checkboxImage = document.createElement("img");
+    checkboxImage.classList.add("checkbox__image");
+    checkboxImage.setAttribute("id", "checkbox__image");
+    checkboxImage.setAttribute("src", "./images/icon-check.svg");
+
+    const todoText = document.createElement("input");
+    todoText.setAttribute("id", "input-task");
+    todoText.setAttribute("type", "text");
+    todoText.setAttribute("value", `${innerTodoText}`);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("cross-icon");
+
+    todoContainer.appendChild(todoComplete);
+    todoContainer.appendChild(checkboxImage);
+    todoContainer.appendChild(todoText);
+    todoContainer.appendChild(deleteButton);
+  }
+} else {
+  console.log("you are fucked");
+}
