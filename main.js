@@ -51,18 +51,6 @@ function buttonClicked() {
   /* ----------------------------- */
   /* Functions                     */
   /* ----------------------------- */
-  const setAsCompleted = () => {
-    todoText.classList.add("line-through");
-    todoComplete.setAttribute("data-visible", "false");
-    todoContainer.setAttribute("id", "todo-container-completed");
-  };
-
-  const setAsNonCompleted = () => {
-    todoText.classList.remove("line-through");
-    todoComplete.setAttribute("data-visible", "true");
-    todoContainer.setAttribute("id", "todo-container-active");
-  };
-
   const pressedDeleteButton = () => {
     todoListContainer.removeChild(todoContainer);
     const todoListContainerNumber = todoListContainer.childElementCount;
@@ -134,9 +122,9 @@ function buttonClicked() {
   todoComplete.addEventListener("click", () => {
     const visibility = todoComplete.getAttribute("data-visible");
     if (visibility === "true") {
-      setAsCompleted();
+      setAsCompleted(todoText, todoComplete, todoContainer);
     } else {
-      setAsNonCompleted();
+      setAsNonCompleted(todoText, todoComplete, todoContainer);
     }
   });
 
@@ -216,7 +204,6 @@ function buttonClicked() {
         const box = child.getBoundingClientRect();
         const offset = y - box.top - box.height / 2;
         if (offset < 0 && offset > closest.offset) {
-          s;
           return {
             offset: offset,
             element: child,
@@ -259,6 +246,19 @@ function maketodoText(todoText) {
   todoText.setAttribute("value", `${addTodoField.value}`);
 }
 
+function setAsCompleted(todoText, todoComplete, todoContainer) {
+  todoText.classList.add("line-through");
+  todoComplete.setAttribute("data-visible", "false");
+  todoContainer.setAttribute("id", "todo-container-completed");
+};
+
+function setAsNonCompleted(todoText, todoComplete, todoContainer) {
+  todoText.classList.remove("line-through");
+  todoComplete.setAttribute("data-visible", "true");
+  todoContainer.setAttribute("id", "todo-container-active");
+};
+
+
 //congrats now my code is totally unreadable. I feel smart and dumb at the same time
 const numbLocal = parseInt(localStorage.getItem("numb"));
 
@@ -295,18 +295,6 @@ if (numbLocal != null) {
     /* ----------------------------- */
     /* Functions                     */
     /* ----------------------------- */
-    const setAsCompleted = () => {
-      todoText.classList.add("line-through");
-      todoComplete.setAttribute("data-visible", "false");
-      todoContainer.setAttribute("id", "todo-container-completed");
-    };
-
-    const setAsNonCompleted = () => {
-      todoText.classList.remove("line-through");
-      todoComplete.setAttribute("data-visible", "true");
-      todoContainer.setAttribute("id", "todo-container-active");
-    };
-
     const pressedDeleteButton = () => {
       todoListContainer.removeChild(todoContainer);
       const todoListContainerNumber = todoListContainer.childElementCount;
@@ -380,9 +368,9 @@ if (numbLocal != null) {
     todoComplete.addEventListener("click", () => {
       const visibility = todoComplete.getAttribute("data-visible");
       if (visibility === "true") {
-        setAsCompleted();
+        setAsCompleted(todoText, todoComplete, todoContainer);
       } else {
-        setAsNonCompleted();
+        setAsNonCompleted(todoText, todoComplete, todoContainer);
       }
     });
 
@@ -462,7 +450,6 @@ if (numbLocal != null) {
           const box = child.getBoundingClientRect();
           const offset = y - box.top - box.height / 2;
           if (offset < 0 && offset > closest.offset) {
-            s;
             return {
               offset: offset,
               element: child,
