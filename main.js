@@ -17,31 +17,24 @@ let localStorageCounter = 0;
 /* ----------------------------- */
 /* Submit button                 */
 /* ----------------------------- */
-submitButton.addEventListener("click", () => {
+
+submitButton.addEventListener('click', () => {
+  buttonClicked()
+})
+
+function buttonClicked() {
   const todoContainer = document.createElement("div");
-  todoContainer.classList.add("todo-container");
-  todoContainer.classList.add("draggable");
-  todoContainer.setAttribute("id", "todo-container-active");
-  todoContainer.setAttribute("draggable", "true");
+  makeTodoContainer(todoContainer)
   todoListContainer.appendChild(todoContainer);
 
-  const numb = todoListContainer.childElementCount;
-
   const todoComplete = document.createElement("input");
-  todoComplete.setAttribute("type", "checkbox");
-  todoComplete.setAttribute("name", "check");
-  todoComplete.setAttribute("id", "complete-task");
-  todoComplete.setAttribute("data-visible", "true");
+  makeComplete(todoComplete)
 
   const checkboxImage = document.createElement("img");
-  checkboxImage.classList.add("checkbox__image");
-  checkboxImage.setAttribute("id", "checkbox__image");
-  checkboxImage.setAttribute("src", "./images/icon-check.svg");
+  makeCheckbox(checkboxImage)
 
   const todoText = document.createElement("input");
-  todoText.setAttribute("id", "input-task");
-  todoText.setAttribute("type", "text");
-  todoText.setAttribute("value", `${addTodoField.value}`);
+  maketodoText(todoText)
 
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("cross-icon");
@@ -51,6 +44,7 @@ submitButton.addEventListener("click", () => {
   todoContainer.appendChild(todoText);
   todoContainer.appendChild(deleteButton);
 
+  let numb = todoListContainer.childElementCount;
   localStorage.setItem("numb", `${numb}`);
   localStorage.setItem(`todo${numb}`, `${addTodoField.value}`);
 
@@ -236,10 +230,36 @@ submitButton.addEventListener("click", () => {
   }
 
   addTodoField.value = "";
-});
+};
+
+
+function makeComplete(todoComplete) {
+  todoComplete.setAttribute("type", "checkbox");
+  todoComplete.setAttribute("name", "check");
+  todoComplete.setAttribute("id", "complete-task");
+  todoComplete.setAttribute("data-visible", "true");
+}
+
+function makeTodoContainer(todoContainer) {
+  todoContainer.classList.add("todo-container");
+  todoContainer.classList.add("draggable");
+  todoContainer.setAttribute("id", "todo-container-active");
+  todoContainer.setAttribute("draggable", "true");
+}
+
+function makeCheckbox(checkboxImage) {
+  checkboxImage.classList.add("checkbox__image");
+  checkboxImage.setAttribute("id", "checkbox__image");
+  checkboxImage.setAttribute("src", "./images/icon-check.svg");
+}
+
+function maketodoText(todoText) {
+  todoText.setAttribute("id", "input-task");
+  todoText.setAttribute("type", "text");
+  todoText.setAttribute("value", `${addTodoField.value}`);
+}
 
 //congrats now my code is totally unreadable. I feel smart and dumb at the same time
-
 const numbLocal = parseInt(localStorage.getItem("numb"));
 
 if (numbLocal != null) {
@@ -247,24 +267,17 @@ if (numbLocal != null) {
     const innerTodoText = localStorage.getItem(`todo${i}`);
 
     const todoContainer = document.createElement("div");
-    todoContainer.classList.add("todo-container");
-    todoContainer.classList.add("draggable");
-    todoContainer.setAttribute("id", "todo-container-active");
-    todoContainer.setAttribute("draggable", "true");
+    makeTodoContainer(todoContainer)
     todoListContainer.appendChild(todoContainer);
 
     const numb = numbLocal;
 
     const todoComplete = document.createElement("input");
-    todoComplete.setAttribute("type", "checkbox");
-    todoComplete.setAttribute("name", "check");
-    todoComplete.setAttribute("id", "complete-task");
+    makeComplete(todoComplete)
     todoComplete.setAttribute("data-visible", "true");
 
     const checkboxImage = document.createElement("img");
-    checkboxImage.classList.add("checkbox__image");
-    checkboxImage.setAttribute("id", "checkbox__image");
-    checkboxImage.setAttribute("src", "./images/icon-check.svg");
+    makeCheckbox(checkboxImage)
 
     const todoText = document.createElement("input");
     todoText.setAttribute("id", "input-task");
